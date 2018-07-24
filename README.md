@@ -21,8 +21,7 @@
 - Selenium (pip install selenium)
 
 # Use
-
-WIKI coming soon.
+[Adding Accounts](https://github.com/Merubokkusu/discord-spam-bots/wiki/Adding-accounts)
 
 # Final Notes
 This script is made only for testing your servers anti-spam, using bots like [sweetie](https://github.com/blackhole12/sweetiebot) etc
