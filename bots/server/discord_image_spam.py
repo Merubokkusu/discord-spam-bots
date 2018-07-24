@@ -1,0 +1,32 @@
+#DO NOT REMOVE THIS
+#Made by Merubokkusu | www.merubokkusu.com
+#If you paid for this you got scammed.
+import discord
+import asyncio
+import random
+import os
+import sys
+import subprocess
+sys.path.append("./.")
+from config import *
+
+client = discord.Client()
+token = sys.argv[1]
+
+@client.event
+async def on_ready():
+    print("Started Image Spam")
+    while not client.is_closed:
+            UpImage = random.choice(os.listdir(DirPictures)) 
+            print(UpImage)
+            await client.send_file(discord.Object(id=DiscordChannel), DirPictures + UpImage)
+            await asyncio.sleep(SpamSpeed) # Changes how fast the images are posted. (Anything under 0.7 tends to break it (┛✧Д✧))┛彡┻━┻ )
+
+if ':' in token: 
+    enp = token.split(':')
+    if autojoinServer == True:
+        p = subprocess.Popen(['python','bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser],shell=True)
+        p.wait()
+    client.run(enp[0],enp[1], bot=False) 
+else: 
+    client.run(token, bot=False)
