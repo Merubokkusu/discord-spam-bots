@@ -26,6 +26,4 @@
 # Final Notes
 This script is made only for testing your servers anti-spam, using bots like [sweetie](https://github.com/blackhole12/sweetiebot) etc
 
-![dontspam.dude](https://a.safe.moe/XgTxAZJ.png)
-
 ![its a face](http://i.imgur.com/bTMYozm.png)
