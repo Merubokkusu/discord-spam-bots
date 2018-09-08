@@ -24,6 +24,9 @@
 [Adding Accounts](https://github.com/Merubokkusu/discord-spam-bots/wiki/Adding-accounts)
 
 # Final Notes
+Self-bots are against discord's ToS, using this on servers that aren't you're own will most likely get your account banned.
+You could even get banned while using it on you're own server. I'm not responsible if you do.
+
 This script is made only for testing your servers anti-spam, using bots like [sweetie](https://github.com/blackhole12/sweetiebot) etc
 
 ![its a face](http://i.imgur.com/bTMYozm.png)
