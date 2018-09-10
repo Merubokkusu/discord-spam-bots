@@ -33,9 +33,12 @@ async def on_ready():
         for member in UserList:
             if(member.id != client.user.id):
                 if os.path.exists('text.txt'):
-                    if textRandom == False:
+                    if textRandom == False and textFull == False:
                         lines = open('text.txt').read().splitlines()
                         spam_text = lines[0]
+                    elif textFull == True:
+                        with open('text.txt', 'r', encoding='utf-8') as spamtextfile:
+                            spam_text = spamtextfile.read()
                     else:
                         lines = open('text.txt').read().splitlines()
                         spam_text = random.choice(lines)

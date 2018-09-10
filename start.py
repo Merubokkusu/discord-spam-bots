@@ -4,6 +4,7 @@ import os
 from time import sleep
 from config import *
 
+
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
     w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n"
@@ -86,9 +87,11 @@ if in_pick == 6:
 
 if in_pick == 0:
     for token in userToken:
-        if ':' in token: 
+        if ':' in token:
             enp = token.split(':')
             p = subprocess.Popen(['python','bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser],shell=True)
             sleep(joinSpeed)
+        else:
+            print("You're using a token, you must use email:pass to use auto join")
 
 p.wait()

@@ -17,15 +17,20 @@ spam_text = sys.argv[2]
 
 @client.event
 async def on_ready():
+    spam_text = sys.argv[2]
     print("Started Text Spam")
     while not client.is_closed:
         if os.path.exists('text.txt'):
-            if textRandom == False:
+            if textRandom == False and textFull == False:
                 lines = open('text.txt').read().splitlines()
                 spam_text = lines[0]
+            elif textFull == True:
+                with open('text.txt', 'r', encoding='utf-8') as spamtextfile:
+                    spam_text = spamtextfile.read()
             else:
                 lines = open('text.txt').read().splitlines()
                 spam_text = random.choice(lines)
+
         await client.send_message(discord.Object(id=DiscordChannel), spam_text)
         await asyncio.sleep(SpamSpeed) 
         print(client.user.name + ' sent ' + spam_text)

@@ -3,6 +3,7 @@ userToken = [''] # User Tokens here. example 'token','token' | 'email:pass', 'to
 DiscordChannel = '' # Channel ID,
 SpamSpeed = 0.7 # Changes how fast the messages are posted. (Anything under 0.7 tends to break it (┛✧Д✧))┛彡┻━┻ )
 textRandom = False # if the root has 'text.txt' it will pick a random text line and send it.
+textFull = False # Will send everything written in 'text.txt'
 
 #Server Joiner
 inviteLink = '' # Links must be like this https://discord.gg/XXXXXX
