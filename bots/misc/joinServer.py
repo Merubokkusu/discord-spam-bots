@@ -19,6 +19,7 @@ email = sys.argv[1]
 password = sys.argv[2]
 inviteLink = sys.argv[3]
 useBrowser = sys.argv[4]
+PROXY = sys.argv[5]
 
 if useBrowser == 'Chrome':
     chromeOptions = webdriver.ChromeOptions()
@@ -26,13 +27,6 @@ if useBrowser == 'Chrome':
     chromeOptions.add_argument("disable-gpu")
 
     if os.path.exists('proxies.txt'):
-        lines = open('proxies.txt').read().splitlines()
-        PROXY = lines[0]
-        del lines[0]
-        prox = open('proxies.txt', 'w')
-        for l in lines:
-            prox.write(l+'\n')
-        prox.close()
         chromeOptions.add_argument('--proxy-server='+PROXY)
         chromeOptions.add_argument('--proxy-auto-detect')
         chromeOptions.add_argument("--incognito")
@@ -87,7 +81,7 @@ browser.find_element_by_xpath("(//input[@name=''])[2]").clear()
 browser.find_element_by_xpath("(//input[@name=''])[2]").send_keys(password)
 print("Writing Password")
 browser.find_element_by_xpath("//button[@type='submit']").click()
-element = WebDriverWait(browser, 60).until(EC.presence_of_element_located((By.CLASS_NAME, "guildsAddInner-1KMFy-")))
+element = WebDriverWait(browser, 500).until(EC.presence_of_element_located((By.CLASS_NAME, "guildsAddInner-1KMFy-")))
 browser.execute_script('document.getElementsByTagName("body")[0].appendChild(document.getElementsByClassName("guildsWrapper-5TJh6A")[0])')
 element = WebDriverWait(browser, 60).until(EC.presence_of_element_located((By.ID, "app-mount")))
 browser.execute_script('var el = document.querySelector( "div.app-19_DXt.platform-web" ); el.parentNode.removeChild( el );')

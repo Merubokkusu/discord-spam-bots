@@ -8,12 +8,16 @@ import os
 import time
 import random
 import subprocess
+import aiohttp
 sys.path.append("./.")
 from config import *
 
-client = discord.Client()
+if(os.path.exists("proxies.txt")):
+    conn = aiohttp.ProxyConnector(proxy="http://"+sys.argv[3])
+    client = discord.Client(connector=conn)
+else:
+    client = discord.Client()
 token = sys.argv[1]
-spam_text = sys.argv[2]
 UserList = []
 emojiList = [':smile:',':laughing:',':slight_smile:',':hot_pepper:',':smirk:']#You can configure these to your likings 
 enp = []
@@ -22,6 +26,7 @@ enp = []
 
 @client.event
 async def on_ready():
+    spam_text = sys.argv[2]
     print("Started Text Spam with " + client.user.name)
     for server in client.servers:
         if ScanAllServers == False:

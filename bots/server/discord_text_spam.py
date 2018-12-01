@@ -7,10 +7,16 @@ import sys
 import random
 import os
 import subprocess
+import aiohttp
+import socket
 sys.path.append("./.")
 from config import *
 
-client = discord.Client()
+if(os.path.exists("proxies.txt")):
+    conn = aiohttp.ProxyConnector(proxy="http://"+sys.argv[3])
+    client = discord.Client(connector=conn)
+else:
+    client = discord.Client()
 token = sys.argv[1]
 global spam_text
 spam_text = sys.argv[2]

@@ -6,12 +6,19 @@ import discord
 import asyncio
 import sys
 import subprocess
+import aiohttp
+import os
+import random
 from bs4 import BeautifulSoup
 sys.path.append("./.")
 from config import *
 
 
-client = discord.Client()
+if(os.path.exists("proxies.txt")):
+    conn = aiohttp.ProxyConnector(proxy="http://"+sys.argv[2])
+    client = discord.Client(connector=conn)
+else:
+    client = discord.Client()
 token = sys.argv[1]
 UserList = []
 
@@ -54,8 +61,8 @@ async def on_ready():
         while not client.is_closed:
             member = random.choice(UserList)
             if(member.id != client.user.id):
-            userNames = open('dm_spam_insult.txt');
-            text = userNames.read().strip().split()
+                userNames = open('dm_spam_insult.txt')
+                text = userNames.read().strip().split()
             if member.id in text: 
                 print(member.name + ' was already messaged')
             else:

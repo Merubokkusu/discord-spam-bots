@@ -4,12 +4,18 @@ import os
 from time import sleep
 from config import *
 
+proxy_number = 0
 
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
     w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n"
 else:
     w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n"
+
+if os.path.exists('proxies.txt'):
+    proxy_list = open("proxies.txt").read().splitlines()
+else:
+    proxy_list = ["localhost"]
 
 for char in w1:
     sleep(0.01)
@@ -34,21 +40,26 @@ in_pick = float(input("Select a bot: "))
 if in_pick == 1:
     if os.path.exists('text.txt'):
         for token in userToken:
-            p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,'null'],shell=True)
+            p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,'null',proxy_list[proxy_number]],shell=True)
+            proxy_number += 1
             sleep(1)
     else:
         spam_text = input("Write spam text : ")
         for token in userToken:
-            p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,spam_text],shell=True)
+            p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,spam_text,proxy_list[proxy_number]],shell=True)
+            proxy_number += 1            
             sleep(1)
 
 if in_pick == 2:
     for token in userToken:
-        p = subprocess.Popen(['python', 'bots\server\discord_image_spam.py', token],shell=True)
+        p = subprocess.Popen(['python', 'bots\server\discord_image_spam.py', token,proxy_list[proxy_number]],shell=True)
+        proxy_number += 1
             
 if in_pick == 3:
     for token in userToken:
-        p = subprocess.Popen(['python','bots\server\discord_insult_spam.py', token],shell=True)
+        p = subprocess.Popen(['python','bots\server\discord_insult_spam.py', token,proxy_list[proxy_number]],shell=True)
+        proxy_number += 1
+
 #DM Spammers
 if in_pick == 4:
     if os.path.exists('text.txt'):
@@ -57,7 +68,8 @@ if in_pick == 4:
             file.write('=====Merubokkusu=====\n')#This is written for bug issues :/
             file.close()
         for token in userToken:
-            p = subprocess.Popen(['python','bots\DM\discord_text_spam_dm.py',token,'null'],shell=True)
+            p = subprocess.Popen(['python','bots\DM\discord_text_spam_dm.py',token,'null',proxy_list[proxy_number]],shell=True)
+            proxy_number += 1
             sleep(2.5)
     else:
         if not os.path.exists('dm_spam_text.txt'):
@@ -66,7 +78,8 @@ if in_pick == 4:
             file.close()
         spam_text = input("Write spam text : ")
         for token in userToken:
-            p = subprocess.Popen(['python','bots\DM\discord_text_spam_dm.py',token,spam_text],shell=True)
+            p = subprocess.Popen(['python','bots\DM\discord_text_spam_dm.py',token,spam_text,proxy_list[proxy_number]],shell=True)
+            proxy_number += 1
             sleep(2.5)
 
 if in_pick == 5:
@@ -75,21 +88,24 @@ if in_pick == 5:
         file.write('=====Merubokkusu=====\n')#This is written for bug issues :/
         file.close()
     for token in userToken:
-        p = subprocess.Popen(['python', 'bots\DM\discord_image_spam_dm.py', token],shell=True)
-            
+        p = subprocess.Popen(['python', 'bots\DM\discord_image_spam_dm.py', token,proxy_list[proxy_number]],shell=True)
+        proxy_number += 1
+
 if in_pick == 6:
     if not os.path.exists('dm_spam_insult.txt'):
         file = open('dm_spam_insult.txt','w')
         file.write('=====Merubokkusu=====\n')#This is written for bug issues :/
         file.close()
     for token in userToken:
-        p = subprocess.Popen(['python','bots\DM\discord_insult_spam_dm.py', token],shell=True)
+        p = subprocess.Popen(['python','bots\DM\discord_insult_spam_dm.py', token,proxy_list[proxy_number]],shell=True)
+        proxy_number += 1
 
 if in_pick == 0:
     for token in userToken:
         if ':' in token:
             enp = token.split(':')
-            p = subprocess.Popen(['python','bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser],shell=True)
+            p = subprocess.Popen(['python','bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]],shell=True)
+            proxy_number += 1        
             sleep(joinSpeed)
         else:
             print("You're using a token, you must use email:pass to use auto join")
