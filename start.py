@@ -6,6 +6,7 @@ from config import *
 
 proxy_number = 0
 
+
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
     w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n"
@@ -15,7 +16,10 @@ else:
 if os.path.exists('proxies.txt'):
     proxy_list = open("proxies.txt").read().splitlines()
 else:
-    proxy_list = ["localhost"]
+    proxy_list = []
+    for token in userToken:   
+        proxy_list.append('127.0.0.1')
+    
 
 for char in w1:
     sleep(0.01)
@@ -44,10 +48,11 @@ if in_pick == 1:
             proxy_number += 1
             sleep(1)
     else:
+        print(proxy_list[proxy_number])
         spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,spam_text,proxy_list[proxy_number]],shell=True)
-            proxy_number += 1            
+            proxy_number += 1           
             sleep(1)
 
 if in_pick == 2:
