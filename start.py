@@ -18,7 +18,7 @@ if os.path.exists('proxies.txt'):
 else:
     proxy_list = []
     for token in userToken:   
-        proxy_list.append('127.0.0.1')
+        proxy_list.append('localhost')
     
 
 for char in w1:
@@ -48,7 +48,6 @@ if in_pick == 1:
             proxy_number += 1
             sleep(1)
     else:
-        print(proxy_list[proxy_number])
         spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,spam_text,proxy_list[proxy_number]],shell=True)
