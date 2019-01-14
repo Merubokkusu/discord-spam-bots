@@ -44,24 +44,25 @@ in_pick = float(input("Select a bot: "))
 if in_pick == 1:
     if os.path.exists('text.txt'):
         for token in userToken:
-            p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,'null',proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots\server\discord_text_spam.py',token,'null',proxy_list[proxy_number]],shell=True)
             proxy_number += 1
             sleep(1)
     else:
+        print(proxy_list[proxy_number])
         spam_text = input("Write spam text : ")
         for token in userToken:
-            p = subprocess.Popen(['python','bots\server\discord_text_spam.py',token,spam_text,proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots\server\discord_text_spam.py',token,spam_text,proxy_list[proxy_number]],shell=True)
             proxy_number += 1           
             sleep(1)
 
 if in_pick == 2:
     for token in userToken:
-        p = subprocess.Popen(['python', 'bots\server\discord_image_spam.py', token,proxy_list[proxy_number]],shell=True)
+        p = subprocess.Popen([pythonCommand, 'bots\server\discord_image_spam.py', token,proxy_list[proxy_number]],shell=True)
         proxy_number += 1
             
 if in_pick == 3:
     for token in userToken:
-        p = subprocess.Popen(['python','bots\server\discord_insult_spam.py', token,proxy_list[proxy_number]],shell=True)
+        p = subprocess.Popen([pythonCommand,'bots\server\discord_insult_spam.py', token,proxy_list[proxy_number]],shell=True)
         proxy_number += 1
 
 #DM Spammers
@@ -72,7 +73,7 @@ if in_pick == 4:
             file.write('=====Merubokkusu=====\n')#This is written for bug issues :/
             file.close()
         for token in userToken:
-            p = subprocess.Popen(['python','bots\DM\discord_text_spam_dm.py',token,'null',proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots\DM\discord_text_spam_dm.py',token,'null',proxy_list[proxy_number]],shell=True)
             proxy_number += 1
             sleep(2.5)
     else:
@@ -82,7 +83,7 @@ if in_pick == 4:
             file.close()
         spam_text = input("Write spam text : ")
         for token in userToken:
-            p = subprocess.Popen(['python','bots\DM\discord_text_spam_dm.py',token,spam_text,proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots\DM\discord_text_spam_dm.py',token,spam_text,proxy_list[proxy_number]],shell=True)
             proxy_number += 1
             sleep(2.5)
 
@@ -92,7 +93,7 @@ if in_pick == 5:
         file.write('=====Merubokkusu=====\n')#This is written for bug issues :/
         file.close()
     for token in userToken:
-        p = subprocess.Popen(['python', 'bots\DM\discord_image_spam_dm.py', token,proxy_list[proxy_number]],shell=True)
+        p = subprocess.Popen([pythonCommand, 'bots\DM\discord_image_spam_dm.py', token,proxy_list[proxy_number]],shell=True)
         proxy_number += 1
 
 if in_pick == 6:
@@ -101,14 +102,14 @@ if in_pick == 6:
         file.write('=====Merubokkusu=====\n')#This is written for bug issues :/
         file.close()
     for token in userToken:
-        p = subprocess.Popen(['python','bots\DM\discord_insult_spam_dm.py', token,proxy_list[proxy_number]],shell=True)
+        p = subprocess.Popen([pythonCommand,'bots\DM\discord_insult_spam_dm.py', token,proxy_list[proxy_number]],shell=True)
         proxy_number += 1
 
 if in_pick == 0:
     for token in userToken:
         if ':' in token:
             enp = token.split(':')
-            p = subprocess.Popen(['python','bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]],shell=True)
             proxy_number += 1        
             sleep(joinSpeed)
         else:
