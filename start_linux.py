@@ -15,7 +15,9 @@ else:
 if os.path.exists('proxies.txt'):
     proxy_list = open("proxies.txt").read().splitlines()
 else:
-    proxy_list = ["localhost"]
+    proxy_list = []
+    for token in userToken:   
+        proxy_list.append('localhost')
 
 for char in w1:
     sleep(0.01)
@@ -111,3 +113,4 @@ if in_pick == 0:
             print("You're using a token, you must use email:pass to use auto join")
 
 p.wait()
+
