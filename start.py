@@ -107,12 +107,14 @@ if in_pick == 6:
 
 if in_pick == 0:
     for token in userToken:
-        if ':' in token:
+        if userToken == False:
             enp = token.split(':')
-            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots\misc\joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]],shell=True)
             proxy_number += 1        
             sleep(joinSpeed)
         else:
-            print("You're using a token, you must use email:pass to use auto join")
+            p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,proxy_list[proxy_number]],shell=True)
+            proxy_number += 1        
+            sleep(joinSpeed)
 
 p.wait()
