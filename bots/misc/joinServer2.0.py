@@ -2,15 +2,17 @@ import requests
 import json
 import sys
 import os
-TOKEN = sys.argv[0]
-INVITE_LINK = sys.argv[1]
-PROXY = sys.argv[2]
+TOKEN = sys.argv[1]
+INVITE_LINK = sys.argv[2]
+PROXY = { 'http' : sys.argv[3] } 
 url = 'https://discordapp.com/api/v6/invite/'+INVITE_LINK+'?with_counts=true'
-
+print(url)
 headers = {"content-type": "application/json", "Authorization": TOKEN }
-try:
-    r = requests.post(url,headers=headers, proxies=PROXY)
-except requests.RequestException as e:
-    print("Server join error. Make sure the invite link is 6 digits and not the full URL.")
+
+r = requests.post(url,headers=headers, proxies=PROXY)
+if r.status_code == 200:
+    print("Token:"+"'"+TOKEN[-25]+"'"+" Joined the server")
 else:
-    print("Joined Server")
+    print('error, something went wrong.')
+    print('Make sure your token is correct | https://discordhelp.net/discord-token')
+    print(r.json())
