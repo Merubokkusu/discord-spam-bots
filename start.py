@@ -48,7 +48,6 @@ if in_pick == 1:
             proxy_number += 1
             sleep(1)
     else:
-        print(proxy_list[proxy_number])
         spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots\server\discord_text_spam.py',token,spam_text,proxy_list[proxy_number]],shell=True)
