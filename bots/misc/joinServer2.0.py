@@ -6,7 +6,6 @@ TOKEN = sys.argv[1]
 INVITE_LINK = sys.argv[2]
 PROXY = { 'http' : sys.argv[3] } 
 url = 'https://discordapp.com/api/v6/invite/'+INVITE_LINK+'?with_counts=true'
-print(url)
 headers = {"content-type": "application/json", "Authorization": TOKEN }
 
 r = requests.post(url,headers=headers, proxies=PROXY)
