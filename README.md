@@ -1,7 +1,7 @@
 # Discord spam bots with multiple account support and more. *Made strictly for testing anti-spam for server owners*
 
 
-[Discord Server](https://discord.gg/p56jKyJ)
+[Contact (Twitter)](https://twitter.com/messages/compose?recipient_id=2787470244)
 
 [Buy me a Dr.Pepper (Because alcohol is nasty)](https://www.paypal.me/Merubokkusu)
 
