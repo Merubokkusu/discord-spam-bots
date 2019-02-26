@@ -13,7 +13,8 @@
 - Image spammer
 - Insult spammer
 - Text spammer
-- Auto server joining
+- Server joining
+- Proxy support 
 
 # Requirements 
 - Python 3.6+ (I use [3.6.4](https://www.python.org/downloads/release/python-364/))
