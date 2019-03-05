@@ -11,14 +11,16 @@ useTokenJoin = True
 inviteLink = '' # Only the last 6 digits of the invite link https://discord.gg/XXXXXX | Unless you are using email join then just the full URL
 autojoinServer = False # Will auto join the inviteLink server if True
 useBrowser = 'Chrome' # Chrome | Firefox | Edge (windows only) | Set the browser used for joining the servers.
-joinSpeed = 15 # Changes how fast the bot will start the server joiner (if using bot 0)
+joinSpeed = 3 # Changes how fast the bot will start the server joiner
 
 #DM Spam
 DiscordServer = '' # Server ID (https://a.safe.moe/KP4DR.png this one)
 ScanAllServers = False # (True or False) Instead of using a server ID this will scan all of the users joined servers. 
 HeavyScrape = True # (True or False) Use this for servers with a lot of users
 
-
+#Account Creator
+captchaAPI = '' #2captcha API Key
+mailServer = '' # Mail server, pop 3 version. (example = "pop.mail.ru")
 
 #Picture spam
-DirPictures = 'C:\\Users\\Public\\Pictures\\Cheese\\Pepper Jack\\' # Picture(s) location !ALWAYS DOUBLE SLASH AND END WITH THAT DOUBLE SLASH YO!
+DirPictures = 'C:\\Users\\Liam\\Pictures\\Anime and Weeb\\Normal\\' # Picture(s) location !ALWAYS DOUBLE SLASH AND END WITH THAT DOUBLE SLASH!

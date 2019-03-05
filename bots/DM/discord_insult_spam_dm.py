@@ -1,6 +1,14 @@
-#DO NOT REMOVE THIS
-#Made by Merubokkusu | www.merubokkusu.com
-#If you paid for this you got scammed.
+#
+# discord_insult_spam_dm.py
+# @author Merubokkusu
+# @created Fri Jan 04 2019 00:58:07 GMT-0500 (Eastern Standard Time)
+# @copyright 2018 - 2019
+# @license CC BY-NC-ND 3.0 US | https://creativecommons.org/licenses/by-nc-nd/3.0/us/
+# @website https://github.com/Merubokkusu/discord-spam-bots/
+# @email liam@merubokkusu.com
+# @last-modified Tue Mar 05 2019 02:15:43 GMT-0500 (Eastern Standard Time)
+#
+
 import urllib.request
 import discord
 import asyncio
