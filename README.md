@@ -9,6 +9,7 @@
 
 
 # Features 
+- Account Creator
 - Mulitple accounts
 - Image spammer
 - Insult spammer
