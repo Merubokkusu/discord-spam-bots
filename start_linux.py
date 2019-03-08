@@ -126,11 +126,11 @@ if in_pick == 7:
     for token in userToken:
         if userToken == False:
             enp = token.split(':')
-            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]],shell=False)
             proxy_number += 1        
             sleep(joinSpeed)
         else:
-            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer2.0.py',token,inviteLink,proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer2.0.py',token,inviteLink,proxy_list[proxy_number]],shell=False)
             proxy_number += 1        
             sleep(joinSpeed)
 
@@ -140,7 +140,7 @@ if in_pick == 8:
     else:
         for combo in emailList:
             enp = combo.split(':')
-            p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_creator.py',enp[0],enp[1],proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_creator.py',enp[0],enp[1],proxy_list[proxy_number]],shell=False)
             proxy_number += 1        
             sleep(joinSpeed)
 if in_pick == 9:
@@ -150,7 +150,7 @@ if in_pick == 9:
         for combo in emailList:
             for tknv in tokenV:
                 enp = combo.split(':')
-                p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py',enp[0],enp[1],proxy_list[proxy_number],tknv],shell=True)
+                p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py',enp[0],enp[1],proxy_list[proxy_number],tknv],shell=False)
                 proxy_number += 1        
                 sleep(joinSpeed)
 p.wait()

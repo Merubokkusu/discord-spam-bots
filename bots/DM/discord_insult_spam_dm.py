@@ -103,8 +103,12 @@ if ':' in token:
             p = subprocess.Popen(['python','bots\misc\joinServer.py',enp[0],enp[1],inviteLink,useBrowser],shell=False)
             p.wait() 
     client.run(enp[0],enp[1], bot=False) 
-else: 
+else:
     if autojoinServer == True:
-        p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=True)
-        p.wait() 
+		if sys.platform == "win32":
+			p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=True)
+			p.wait()
+		else:
+			p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=False)
+			p.wait()
     client.run(token, bot=False)
