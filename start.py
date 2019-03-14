@@ -141,7 +141,7 @@ if in_pick == 8:
     else:
         for combo in emailList:
             enp = combo.split(':')
-            p = subprocess.Popen([pythonCommand,'bots\misc\account-creator\account_creator.py',enp[0],enp[1],proxy_list[proxy_number]],shell=True)
+            p = subprocess.Popen([pythonCommand,'bot/misc/account-creator/account_creator.py',enp[0],enp[1],proxy_list[proxy_number]],shell=True)
             proxy_number += 1        
             sleep(joinSpeed)
 if in_pick == 9:
@@ -151,7 +151,7 @@ if in_pick == 9:
         for combo in emailList:
             for tknv in tokenV:
                 enp = combo.split(':')
-                p = subprocess.Popen([pythonCommand,'bots\misc\account-creator\account_verify.py',enp[0],enp[1],proxy_list[proxy_number],tknv],shell=True)
+                p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py',enp[0],enp[1],proxy_list[proxy_number],tknv],shell=True)
                 proxy_number += 1        
                 sleep(joinSpeed)
 
