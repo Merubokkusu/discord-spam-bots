@@ -6,7 +6,7 @@
 # @license CC BY-NC-ND 3.0 US | https://creativecommons.org/licenses/by-nc-nd/3.0/us/
 # @website https://github.com/Merubokkusu/discord-spam-bots/
 # @email liam@merubokkusu.com
-# @last-modified Tue Mar 05 2019 02:14:04 GMT-0500 (Eastern Standard Time)
+# @last-modified Mon Mar 18 2019 15:02:46 GMT-0400 (Eastern Daylight Time)
 #
 
 import discord
@@ -60,11 +60,11 @@ if ':' in token:
             p.wait() 
     client.run(enp[0],enp[1], bot=False) 
 else:
-    if autojoinServer == True:
-		if sys.platform == "win32":
-			p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=True)
-			p.wait()
-		else:
-			p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=False)
-			p.wait()
+    if autojoinServer == True:   
+        if sys.platform == "win32":
+            p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=True)
+            p.wait()
+        else:
+            p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=False)
+            p.wait()
     client.run(token, bot=False)
