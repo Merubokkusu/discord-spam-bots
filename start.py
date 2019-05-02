@@ -16,7 +16,7 @@ from time import sleep
 from config import *
 
 proxy_number = 0
-
+spam_text = None
 
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
@@ -36,28 +36,31 @@ if os.path.exists('combolist.txt'):
 if os.path.exists('token_gen.txt'):
     tokenV = open("token_gen.txt").read().splitlines()
 
-for char in w1:
-    sleep(0.01)
-    sys.stdout.write(char)
-    sys.stdout.flush()
-sleep(0.5)
-print("Type one of the following numbers to launch that spammmer")
-print("       +========-Server Spammers-=========+")
-print("1 : Text Spammer - Write your own text to spam")
-print("2 : Image Spammer - Spam random images in a selected folder")
-print("3 : Insult Spammer - Picks insults online and spams them")
-print("         +========-DM Spammers-=========+      ")
-print("4 : Text Spammer - Write your own text to spam")
-print("5 : Image Spammer - Spam random images in a selected folder")
-print("6 : Insult Spammer - Picks insults online and spams them")
-print("           +========-Other-=========+")
-print("7 : Join Server - Join the server thats written in the config")
-print("           +========-Account Creator-=========+")
-print("8 : Account creator - Create bulk accounts")
-print("9 : Account verifier - Verify accounts")
+if len(sys.argv) < 2:
+    for char in w1:
+        sleep(0.01)
+        sys.stdout.write(char)
+        sys.stdout.flush()
+    sleep(0.5)
+    print("Type one of the following numbers to launch that spammmer")
+    print("       +========-Server Spammers-=========+")
+    print("1 : Text Spammer - Write your own text to spam")
+    print("2 : Image Spammer - Spam random images in a selected folder")
+    print("3 : Insult Spammer - Picks insults online and spams them")
+    print("         +========-DM Spammers-=========+      ")
+    print("4 : Text Spammer - Write your own text to spam")
+    print("5 : Image Spammer - Spam random images in a selected folder")
+    print("6 : Insult Spammer - Picks insults online and spams them")
+    print("           +========-Other-=========+")
+    print("7 : Join Server - Join the server thats written in the config")
+    print("           +========-Account Creator-=========+")
+    print("8 : Account creator - Create bulk accounts")
+    print("9 : Account verifier - Verify accounts")
 
-in_pick = float(input("Select a bot: "))
-
+    in_pick = float(input("Select a bot: "))
+else:
+    in_pick = float(sys.argv[1])
+    spam_text = sys.argv[2]
 
 
 if in_pick == 1:
@@ -67,7 +70,8 @@ if in_pick == 1:
             proxy_number += 1
             sleep(1)
     else:
-        spam_text = input("Write spam text : ")
+        if spam_text == None:
+            spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots\server\discord_text_spam.py',token,spam_text,proxy_list[proxy_number]],shell=True)
             proxy_number += 1           
@@ -99,7 +103,8 @@ if in_pick == 4:
             file = open('dm_spam_text.txt','w')
             file.write('=====Merubokkusu=====\n')#This is written for bug issues :/
             file.close()
-        spam_text = input("Write spam text : ")
+        if spam_text == None:
+            spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots\DM\discord_text_spam_dm.py',token,spam_text,proxy_list[proxy_number]],shell=True)
             proxy_number += 1
