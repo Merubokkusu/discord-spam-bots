@@ -24,11 +24,8 @@
 - Selenium (pip install selenium)
 - Requests (pip install requests)
 
-# Use
-- [Adding Accounts](https://github.com/Merubokkusu/discord-spam-bots/wiki/Adding-accounts)
-- [Config](https://github.com/Merubokkusu/discord-spam-bots/wiki/Config)
-- [Account Creator](https://github.com/Merubokkusu/discord-spam-bots/wiki/Account-Creator)
-- [GUI](https://github.com/Merubokkusu/discord-spam-bots/wiki/GUI)
+# Setup
+- [Setting up the bot | aka the Wiki](https://github.com/Merubokkusu/discord-spam-bots/wiki)
 
 # Info
 Linux bots are tested using VM Virutal Box and Ubuntu/BunsenLabs
