@@ -36,7 +36,7 @@ async def on_ready():
         soup = BeautifulSoup(html, "html.parser")
         insult_text = soup.find('h1')
         print(insult_text.text)
-        await client.send(insult_text.text)
+        await client.channel.send(insult_text.text)
         # Changes how fast the messages are posted. (Anything under 0.7 tends to break it
         await asyncio.sleep(SpamSpeed)
 
