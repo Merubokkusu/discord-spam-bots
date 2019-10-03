@@ -33,7 +33,7 @@ async def on_ready():
     while not client.is_closed:
         UpImage = random.choice(os.listdir(DirPictures))
         print(UpImage)
-        await client.send(file=discord.File(DirPictures + UpImage))
+        await client.channel.send(file=discord.File(DirPictures + UpImage))
         # Changes how fast the images are posted. (Anything under 0.7 tends to break it (┛✧Д✧))┛彡┻━┻ )
         await asyncio.sleep(SpamSpeed)
 
