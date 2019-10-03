@@ -46,7 +46,7 @@ async def on_ready():
                 lines = open('text.txt').read().splitlines()
                 spam_text = random.choice(lines)
 
-        await client.send(spam_text)
+        await client.channel.send(spam_text)
         await asyncio.sleep(SpamSpeed)
         print(client.user.name + ' sent ' + spam_text)
 
