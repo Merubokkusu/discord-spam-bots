@@ -1,5 +1,7 @@
 # Discord spam bots with multiple account support and more. *Made strictly for testing anti-spam for server owners*
 
+## Devlopment is being made on a GUI, this is curently stable(?) -> GUI https://github.com/Merubokkusu/Fuyuumi
+
 
 [Contact (Twitter)](https://twitter.com/messages/compose?recipient_id=2787470244)
 
