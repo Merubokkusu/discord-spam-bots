@@ -3,11 +3,14 @@
 ## Devlopment is being made on a GUI, this is curently stable(?) -> GUI https://github.com/Merubokkusu/Fuyuumi
 
 
-[Contact (Twitter)](https://twitter.com/messages/compose?recipient_id=2787470244)
+[![Gitter](https://badges.gitter.im/discord-spam-bots/community.svg)](https://gitter.im/discord-spam-bots/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-[Buy me a Dr.Pepper (Because alcohol is nasty)](https://www.paypal.me/Merubokkusu)
+![Twitter Follow](https://img.shields.io/twitter/follow/merubokkusu?style=social)
 
-[Or give me anything on on Steam](https://steamcommunity.com/tradeoffer/new/?partner=94720138&token=GY23F7tU)
+[![Paypal](https://img.shields.io/badge/paypal-donate-brightgreen)](https://www.paypal.me/Merubokkusu?)
+
+[![Steam](https://img.shields.io/badge/donate-steam-green?logo=Steam&style=flat-square)](https://steamcommunity.com/tradeoffer/new/?partner=94720138&token=GY23F7tU)
+
 
 
 # Features 
@@ -40,8 +43,3 @@ You could even get banned while using it on your own server. I'm not responsible
 This script is made only for testing your server's anti-spam, using bots like [sweetie](https://github.com/blackhole12/sweetiebot),  etc.
 
 ![its a face](http://i.imgur.com/bTMYozm.png)
-
-## Support on Beerpay
-Hey dude! Help me out for a couple of :beers:!
-
-[![Beerpay](https://beerpay.io/Merubokkusu/discord-spam-bots/badge.svg?style=beer-square)](https://beerpay.io/Merubokkusu/discord-spam-bots)  [![Beerpay](https://beerpay.io/Merubokkusu/discord-spam-bots/make-wish.svg?style=flat-square)](https://beerpay.io/Merubokkusu/discord-spam-bots?focus=wish)
