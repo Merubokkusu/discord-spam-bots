@@ -40,3 +40,8 @@ You could even get banned while using it on your own server. I'm not responsible
 This script is made only for testing your server's anti-spam, using bots like [sweetie](https://github.com/blackhole12/sweetiebot),  etc.
 
 ![its a face](http://i.imgur.com/bTMYozm.png)
+
+## Support on Beerpay
+Hey dude! Help me out for a couple of :beers:!
+
+[![Beerpay](https://beerpay.io/Merubokkusu/discord-spam-bots/badge.svg?style=beer-square)](https://beerpay.io/Merubokkusu/discord-spam-bots)  [![Beerpay](https://beerpay.io/Merubokkusu/discord-spam-bots/make-wish.svg?style=flat-square)](https://beerpay.io/Merubokkusu/discord-spam-bots?focus=wish)
