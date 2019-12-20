@@ -5,7 +5,7 @@
 
 [![Gitter](https://badges.gitter.im/discord-spam-bots/community.svg)](https://gitter.im/discord-spam-bots/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-![Twitter Follow](https://img.shields.io/twitter/follow/merubokkusu?style=social)
+[![Paypal](https://img.shields.io/badge/paypal-donate-brightgreen))](https://twitter.com/intent/follow?screen_name=merubokkusu)
 
 [![Paypal](https://img.shields.io/badge/paypal-donate-brightgreen)](https://www.paypal.me/Merubokkusu?)
 
