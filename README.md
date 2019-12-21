@@ -1,7 +1,6 @@
 # Discord spam bots with multiple account support and more. *Made strictly for testing anti-spam for server owners*
 
-## Devlopment is being made on a GUI, this is curently stable(?) -> GUI https://github.com/Merubokkusu/Fuyuumi
-
+### GUI -> [<img src="https://s.put.re/pgh732Cd.png" width="65" />](https://github.com/Merubokkusu/Fuyuumi/releases/latest)
 
 [![Gitter](https://badges.gitter.im/discord-spam-bots/community.svg)](https://gitter.im/discord-spam-bots/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
