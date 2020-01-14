@@ -37,7 +37,9 @@ def create():
     while 'CAPCHA_NOT_READY' in recaptcha_answer:
         sleep(5)
         recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id), proxies=proxy).text
-    recaptcha_answer = recaptcha_answer.split('|')[1]
+    if | in recaptcha_answer:
+        recaptcha_answer = recaptcha_answer.split('|')[1]
+   
     
 
     #This is the main login.
