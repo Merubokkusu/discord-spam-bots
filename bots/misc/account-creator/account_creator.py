@@ -1,13 +1,13 @@
 #
 # account_creator.py
 # @author Merubokkusu
-# @created Sun Feb 24 2019 21:58:47 GMT-0500 (Eastern Standard Time)
-# @copyright 2018 - 2019
+# @created 2020-01-14T22:58:46.871Z-05:00
 # @license CC BY-NC-ND 3.0 US | https://creativecommons.org/licenses/by-nc-nd/3.0/us/
 # @website https://github.com/Merubokkusu/discord-spam-bots/
 # @email liam@merubokkusu.com
-# @last-modified Tue Mar 05 2019 02:35:22 GMT-0500 (Eastern Standard Time)
+# @last-modified 2020-01-14T23:09:09.764Z-05:00
 #
+
 
 import requests
 import json
@@ -26,18 +26,19 @@ url = "https://discordapp.com/api/v6/auth/register"
 
 def create():
     proxy = {
-    'http': 'http://'+PROXY
+    'http': 'http://'+PROXY,
+    'https': 'https://'+PROXY
     }
     
 
     s = requests.Session()
-    captcha_id = s.post("http://2captcha.com/in.php?key={}&method=userrecaptcha&googlekey={}&pageurl={}".format(API_KEY, site_key, url), proxies=proxy).text.split('|')[1]
-    recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id), proxies=proxy).text
+    captcha_id = s.post("http://2captcha.com/in.php?key={}&method=userrecaptcha&googlekey={}&pageurl={}".format(API_KEY, site_key, url)).text.split('|')[1]
+    recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
     print("solving ref captcha...")
     while 'CAPCHA_NOT_READY' in recaptcha_answer:
         sleep(5)
-        recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id), proxies=proxy).text
-    if | in recaptcha_answer:
+        recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
+    if '|' in recaptcha_answer:
         recaptcha_answer = recaptcha_answer.split('|')[1]
    
     
