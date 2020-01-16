@@ -26,8 +26,7 @@ url = "https://discordapp.com/api/v6/auth/register"
 
 def create():
     proxy = {
-    'http': 'http://'+PROXY,
-    'https': 'https://'+PROXY
+    'http': 'http://'+PROXY
     }
     
 
