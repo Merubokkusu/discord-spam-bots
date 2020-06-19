@@ -1,5 +1,7 @@
 # Discord spam bots with multiple account support and more. *Made strictly for testing anti-spam for server owners*
 
+# Discord has blocked checking if the selfbot is ready to use. Looking into options, as of right now this boy is isn't working.
+
 ### GUI -> [<img src="https://s.put.re/pgh732Cd.png" width="65" />](https://github.com/Merubokkusu/Fuyuumi/releases/latest)
 
 [![Gitter](https://badges.gitter.im/discord-spam-bots/community.svg)](https://gitter.im/discord-spam-bots/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
