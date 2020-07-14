@@ -1,6 +1,6 @@
 # Discord spam bots with multiple account support and more. *Made strictly for testing anti-spam for server owners*
 
-# Discord has blocked checking if the selfbot is ready to use. Looking into options, as of right now this boy is isn't working.
+## Working on porting this to my selfbot API > [discum](https://github.com/Merubokkusu/Discord-S.C.U.M)
 
 ### GUI -> [<img src="https://s.put.re/pgh732Cd.png" width="65" />](https://github.com/Merubokkusu/Fuyuumi/releases/latest)
 
