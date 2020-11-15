@@ -1,6 +1,6 @@
 # Discord spam bots with multiple account support and more. *Made strictly for testing anti-spam for server owners*
 
-## Working on porting this to my selfbot API > [discum](https://github.com/Merubokkusu/Discord-S.C.U.M)
+## PLEASE READ EVERYTHING BEFORE WRITING AN ISSUE!!
 
 ### GUI -> [<img src="https://s.put.re/pgh732Cd.png" width="65" />](https://github.com/Merubokkusu/Fuyuumi/releases/latest)
 
@@ -24,9 +24,9 @@
 - Proxy support 
 
 # Requirements 
-- Python 3.6+ (I use [3.6.4](https://www.python.org/downloads/release/python-364/))
-- discord.py (pip install discord.py)
-- Beautiful Soup 4 (pip install bs4)
+- Python 3.6+ (I use [3.7.8](https://www.python.org/downloads/release/python-378/))
+- discum (pip install discum)
+- Beautiful Soup 4 (pip install bs4
 - Selenium (pip install selenium)
 - Requests (pip install requests)
 
