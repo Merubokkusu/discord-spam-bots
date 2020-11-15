@@ -1,6 +1,7 @@
 # Discord spam bots with multiple account support and more. *Made strictly for testing anti-spam for server owners*
 
-## PLEASE READ EVERYTHING BEFORE WRITING AN ISSUE!!
+## PLEASE READ EVERYTHING BEFORE WRITING AN ISSUE!!\
+DM Spammers are broken as of right now. 
 
 ### GUI -> [<img src="https://s.put.re/pgh732Cd.png" width="65" />](https://github.com/Merubokkusu/Fuyuumi/releases/latest)
 
