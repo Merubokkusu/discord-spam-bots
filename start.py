@@ -152,6 +152,10 @@ if in_pick == 8:
 if in_pick == 9:
     if(captchaAPI == ""):
         print("This requires an API key from https://2captcha.com/")
+    elif not os.path.exists('tokens.txt'):
+        print("tokens.txt is-file missing!")
+    elif not os.path.exists('combolist.txt'):
+        print("combolist.txt-file is missing!")
     else:
         for combo in emailList:
             for tknv in tokenV:
