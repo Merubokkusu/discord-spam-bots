@@ -61,7 +61,7 @@ def sendEmail():
         headers = {"content-type": "application/json", "Authorization": TOKEN }
 
         r = requests.post(url,headers=headers,proxies=proxy)
-        if(r.status_code == 201 or 204):
+        if(r.status_code == 200 or 204):
                 print("Token:"+"'"+TOKEN[-25]+"'"+" had the email resent.")
                 checkEmail()
         else:
