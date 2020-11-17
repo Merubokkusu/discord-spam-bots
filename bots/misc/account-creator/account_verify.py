@@ -56,12 +56,12 @@ class MyHTMLParser(HTMLParser): # From https://stackoverflow.com/a/3075561/60585
                                         verifyLink = resolve(verifyLinkObscured)
                                         print("VERIFY LINK: ", verifyLink)
 def sendEmail():
-        url = 'https://discordapp.com/api/v6/auth/verify/resend'
+        url = 'https://discordapp.com/api/v8/auth/verify/resend'
         print(url)
         headers = {"content-type": "application/json", "Authorization": TOKEN }
 
         r = requests.post(url,headers=headers,proxies=proxy)
-        if r.status_code == 200 or 204:
+        if(r.status_code == 201 or 204):
                 print("Token:"+"'"+TOKEN[-25]+"'"+" had the email resent.")
                 checkEmail()
         else:
@@ -118,7 +118,7 @@ def verifyAccount():
                 "captcha_key": recaptcha_answer,
         }
         r = requests.post("https://discord.com/api/v8/auth/verify", data=json.dumps(payload), headers=headers, proxies=proxy)
-        if r.status_code is 200:
+        if(r.status_code == 200):
                 print("Account was verified")
         else:
                 print("Account verification failed!")
