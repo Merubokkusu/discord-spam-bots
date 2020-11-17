@@ -33,7 +33,7 @@ def create():
     s = requests.Session()
     captcha_id = s.post("http://2captcha.com/in.php?key={}&method=userrecaptcha&googlekey={}&pageurl={}".format(API_KEY, site_key, url)).text.split('|')[1]
     recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
-    print("solving captcha...")
+    print("Solving captcha...")
     while 'CAPCHA_NOT_READY' in recaptcha_answer:
         sleep(5)
         recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
@@ -62,7 +62,7 @@ def create():
     if(r.status_code == 201 or 200 or 202):
         file = open('token_gen.txt','a')
         if 'email' in r.json():
-            print(account_Email.split("@", 1)[0] + ': ' + r.json()['email'])
+            print(account_Email.split("@", 1)[0], ': ', r.json()['email'])
         if 'token' in r.json():
             file.writelines(r.json()['token'] + '\n')
             print('Made account : '+ account_Email.split("@", 1)[0])
