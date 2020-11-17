@@ -61,6 +61,9 @@ def create():
     sleep(0.5)
     if(r.status_code == 201 or 200 or 202):
         file = open('token_gen.txt','a')
-        file.writelines(r.json()['token'] + '\n')
-    print('Made account : '+ account_Email.split("@", 1)[0])
+        if 'email' in r.json():
+            print(account_Email.split("@", 1)[0] + ': ' + r.json()['email'])
+        if 'token' in r.json():
+            file.writelines(r.json()['token'] + '\n')
+            print('Made account : '+ account_Email.split("@", 1)[0])
 create()
