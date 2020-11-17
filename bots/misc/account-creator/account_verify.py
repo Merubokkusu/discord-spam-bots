@@ -34,6 +34,14 @@ proxy = {
         'http': 'http://'+PROXY
 }
 
+def resolve(url):
+        s = requests.Session()
+        url = s.get(url).url
+        if 'https://discord.com/verify' in url:
+                return url
+        else:
+                return None
+
 class MyHTMLParser(HTMLParser): # From https://stackoverflow.com/a/3075561/6058560
 
     def handle_starttag(self, tag, attrs):
@@ -41,8 +49,12 @@ class MyHTMLParser(HTMLParser): # From https://stackoverflow.com/a/3075561/60585
         if tag == "a":
            for name, value in attrs:
                if name == "href":
-                       if str.startswith(value,'https://discordapp.com/verify'):
-                                verifyLink = str(value)
+                       if 'discordapp.com/ls/click' in value:
+                                verifyLinkObscured = str(value)
+                                resolveObscuredLink = resolve(verifyLinkObscured)
+                                if resolveObscuredLink is not None:
+                                        verifyLink = resolve(verifyLinkObscured)
+                                        print("VERIFY LINK: ", verifyLink)
 def sendEmail():
         url = 'https://discordapp.com/api/v6/auth/verify/resend'
         print(url)
@@ -74,9 +86,10 @@ def checkEmail():
                                 if part.get_content_type():
                                         body = part.get_payload(decode=True)
                                         thisbody = str(body)
-                                        MyHTMLParser().feed(thisbody)                                      
+                                        MyHTMLParser().feed(thisbody)
+                        break # No need to look for more emails
         if(foundLink == False):
-                print("couldnt find email, waiting two seconds")
+                print("couldnt find email, waiting two seconds:", account_Email)
                 time.sleep(2)
                 pop_conn.quit() 
                 checkEmail()
@@ -86,26 +99,29 @@ def checkEmail():
 
 def verifyAccount():
         url = 'https://discordapp.com/'
-        print(verifyLink)
+        print("Starting verification")
         s = requests.Session()
         captcha_id = s.post("http://2captcha.com/in.php?key={}&method=userrecaptcha&googlekey={}&pageurl={}".format(API_KEY, site_key, url)).text.split('|')[1]
         recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
-        print("solving ref captcha...")
+        print("Solving ref captcha...")
         while 'CAPCHA_NOT_READY' in recaptcha_answer:
                 sleep(5)
                 recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
         recaptcha_answer = recaptcha_answer.split('|')[1]
         headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
-        "content-type": "application/json",
-        "Connection": "keep-alive",
+                "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
+                "content-type": "application/json",
+                "Connection": "keep-alive",
         }
-
         payload = {
-                "token": verifyLink[:36],
-                "captcha_key": recaptcha_answer,}
-        r = requests.post(verifyLink,data=json.dumps(payload),headers=headers, proxies=proxy)
-        print(r.status_code)
-        print(r.content)
+                "token": verifyLink[33:],
+                "captcha_key": recaptcha_answer,
+        }
+        r = requests.post("https://discord.com/api/v8/auth/verify", data=json.dumps(payload), headers=headers, proxies=proxy)
+        if r.status_code is 200:
+                print("Account was verified")
+        else:
+                print("Account verification failed!")
+                #print(r.content)
 
 sendEmail()
