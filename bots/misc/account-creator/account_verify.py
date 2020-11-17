@@ -57,7 +57,6 @@ class MyHTMLParser(HTMLParser): # From https://stackoverflow.com/a/3075561/60585
                                         print("VERIFY LINK: ", verifyLink)
 def sendEmail():
         url = 'https://discordapp.com/api/v8/auth/verify/resend'
-        print(url)
         headers = {"content-type": "application/json", "Authorization": TOKEN }
 
         r = requests.post(url,headers=headers,proxies=proxy)
@@ -67,7 +66,7 @@ def sendEmail():
         else:
                 print(r.status_code)
                 print('error, something went wrong.')
-                print('Make sure your token is correct | https://discordhelp.net/discord-token')
+                print('Make sure your user token is correct | https://discordhelp.net/discord-token')
 def checkEmail():
         foundLink = False
         pop_conn = poplib.POP3_SSL(mailServer)
@@ -89,11 +88,11 @@ def checkEmail():
                                         MyHTMLParser().feed(thisbody)
                         break # No need to look for more emails
         if(foundLink == False):
-                print("couldnt find email, waiting two seconds:", account_Email)
+                print("Couldnt find email, waiting two seconds:", account_Email)
                 time.sleep(2)
                 pop_conn.quit() 
                 checkEmail()
-        else:
+        elif(foundLink == True):
                 pop_conn.quit()
                 verifyAccount()
 
@@ -121,7 +120,7 @@ def verifyAccount():
         if(r.status_code == 200):
                 print("Account was verified")
         else:
-                print("Account verification failed!")
+                print("Account verification failed! Either already verified or wrong token. Error: ", r.status_code)
                 #print(r.content)
 
 sendEmail()
