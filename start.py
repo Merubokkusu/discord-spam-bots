@@ -19,6 +19,11 @@ proxy_number = 0
 spam_text = None
 p = None
 
+def printWarning(input):
+    print("====")
+    print("WARNING! " + input)
+    print("====")
+
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
     w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n"
@@ -34,8 +39,12 @@ else:
 
 if os.path.exists('combolist.txt'):
     emailList = open("combolist.txt").read().splitlines()
+else:
+    emailList = None
 if os.path.exists('token_gen.txt'):
     tokenV = open("token_gen.txt").read().splitlines()
+else:
+    tokenV = None
 
 if len(sys.argv) < 2:
     for char in w1:
@@ -143,7 +152,9 @@ if in_pick == 7:
 
 if in_pick == 8:
     if(captchaAPI == ""):
-        print("This requires an API key from https://2captcha.com/")
+        printWarning("This requires an API key from https://2captcha.com/")
+    elif(emailList is None):
+        printWarning("You need to create the combolist.txt-file!")
     else:
         for combo in emailList:
             enp = combo.split(':')
@@ -152,11 +163,11 @@ if in_pick == 8:
             sleep(joinSpeed)
 if in_pick == 9:
     if(captchaAPI == ""):
-        print("This requires an API key from https://2captcha.com/")
+        printWarning("This requires an API key from https://2captcha.com/")
     elif not os.path.exists('tokens.txt'):
-        print("tokens.txt is-file missing!")
+        printWarning("You need to create the tokens.txt-file!")
     elif not os.path.exists('combolist.txt'):
-        print("combolist.txt-file is missing!")
+        printWarning("You need to create the combolist.txt-file!")
     else:
         for combo in emailList:
             for tknv in tokenV:
