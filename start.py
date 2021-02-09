@@ -26,16 +26,20 @@ def printWarning(input):
 
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
-    w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n"
+    printWarning("EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n")
 else:
-    w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n"
+    printWarning("EDIT YOUR CONFIG.PY BEFORE USING!")
 
 if os.path.exists('proxies.txt'):
     proxy_list = open("proxies.txt").read().splitlines()
 else:
     proxy_list = []
-    for token in userToken:
-        proxy_list.append('localhost')
+    if userToken is None:
+        printWarning("userToken is missing!")
+    else:
+        for token in userToken:
+            proxy_list.append('localhost')
+
 def incrementProxyNumber():
     global proxy_number
     if(proxy_number < len(proxy_list)):
@@ -53,11 +57,7 @@ else:
     tokenV = None
 
 if len(sys.argv) < 2:
-    for char in w1:
-        sleep(0.01)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-    sleep(0.5)
+    print("   +=================+")
     print("Type one of the following numbers to launch that spammmer")
     print("   +========- Server Spammers -=========+")
     print("1 : Text Spammer - Write your own text to spam")
@@ -72,6 +72,7 @@ if len(sys.argv) < 2:
     print("   +========- Account Creator -=========+")
     print("8 : Account creator - Create bulk accounts")
     print("9 : Account verifier - Verify accounts")
+    print("   +=================+")
 
     in_pick = float(input("Select a bot: "))
 else:
