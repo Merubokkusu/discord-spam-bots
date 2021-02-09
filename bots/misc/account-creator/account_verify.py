@@ -91,7 +91,9 @@ def checkEmail():
                     body = part.get_payload(decode=True)
                     thisbody = str(body)
                     MyHTMLParser().feed(thisbody)
-            break # No need to look for more emails
+            #pop_conn.dele(len(pop_conn.list()[1])) # Delete newest email when found
+            break # No ne ed to look for more emails
+
     if(foundLink == False):
         checkedTimes += 1
         print(currentAcc, "Couldnt find email, waiting two seconds:", account_Email)
