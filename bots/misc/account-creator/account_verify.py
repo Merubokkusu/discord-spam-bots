@@ -47,7 +47,7 @@ class MyHTMLParser(HTMLParser): # From https://stackoverflow.com/a/3075561/60585
         if tag == "a":
            for name, value in attrs:
                if name == "href":
-                    if 'discordapp.com/ls/click' in value:
+                    if 'click.discord.com/ls/click' in value:
                         verifyLinkObscured = str(value)
                         resolveObscuredLink = resolve(verifyLinkObscured)
                         if resolveObscuredLink is not None:
