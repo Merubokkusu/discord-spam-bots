@@ -18,7 +18,7 @@ from config import *
 proxy_number = 0
 spam_text = None
 p = None
-account_creator_completed = open("account_creator_completed.txt", 'r').read().splitlines()
+account_creator_completed = open("account_creator_completed.txt", 'a+').read().splitlines()
 
 def printWarning(input):
     print("====")
