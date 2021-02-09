@@ -129,7 +129,7 @@ def verifyAccount():
         "token": verifyLink[33:],
         "captcha_key": recaptcha_answer,
     }
-    r = requests.post("https://discord.com/api/v8/auth/verify", data=json.dumps(payload), headers=headers, proxies=proxy)
+    r = requests.post("https://discord.com/api/v6/auth/verify", data=json.dumps(payload), headers=headers, proxies=proxy)
     if(r.status_code == 200):
         print("Account was verified")
     else:
