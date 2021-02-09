@@ -17,6 +17,7 @@ from config import *
 
 proxy_number = 0
 spam_text = None
+p = None
 
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
@@ -164,4 +165,5 @@ if in_pick == 9:
                 proxy_number += 1
                 sleep(joinSpeed)
 
-p.wait()
+if p:
+    p.wait()
