@@ -8,19 +8,18 @@
 # @last-modified 2020-01-23T02:02:30.277Z-05:00
 #
 
-
 import requests
 import json
 import sys
 import os
 from time import sleep
 sys.path.append("././.")
-from config import *
+from config import captchaAPI
 
 account_Email = sys.argv[1]
 account_Password = sys.argv[2]
 PROXY = sys.argv[3]
-API_KEY = captchaAPI# Your 2captcha API KEY
+API_KEY = captchaAPI # Your 2captcha API KEY in the config file
 site_key = '6Lef5iQTAAAAAKeIvIY-DeexoO3gj7ryl9rLMEnn' 
 url = "https://discordapp.com/api/v6/auth/register"
 
