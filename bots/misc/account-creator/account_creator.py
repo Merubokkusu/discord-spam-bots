@@ -62,14 +62,16 @@ def create():
     
     sleep(0.5)
     if(r.status_code == 201 or 200 or 202):
-        file = open('token_gen.txt','a')
-        fileCompleted = open('account_creator_completed.txt','a')
+        file = open('tokens.txt','a')
+        fileCompleted = open('account_creator_completed.txt','a+')
         if 'message' in r.json():
             print(currentAcc, ": Discord:", r.json()['message'], 'Retry in seconds: ', r.json()['retry_after'])
         if 'email' in r.json():
             print(currentAcc, ': ', r.json()['email'])
+            fileCompleted.writelines(account_Email + '\n')
+            print(currentAcc, ": Account creation completed!")
         if 'token' in r.json():
-            file.writelines(r.json()['token'] + '\n')
+            file.writelines(account_Email + ":" + account_Password + ":" + r.json()['token'] + '\n')
             fileCompleted.writelines(account_Email + '\n')
             print(currentAcc, ": Account creation completed!")
     
