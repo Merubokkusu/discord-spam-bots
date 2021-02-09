@@ -131,9 +131,10 @@ def verifyAccount():
     }
     r = requests.post("https://discord.com/api/v6/auth/verify", data=json.dumps(payload), headers=headers, proxies=proxy)
     if(r.status_code == 200):
-        print("Account was verified")
+        fileCompleted = open('account_verify_completed.txt','a+')
+        fileCompleted.writelines(account_Email + '\n')
+        print(currentAcc, ": Account verification completed!")
     else:
-        print("Account verification failed! Either already verified or wrong token. Error: ", r.status_code)
-        #print(r.content)
+        print(currentAcc, "Account verification failed! Either already verified or wrong token. Error: ", r.status_code)
 
 sendEmail()

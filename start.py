@@ -19,6 +19,7 @@ proxy_number = 0
 spam_text = None
 p = None
 account_creator_completed = open("account_creator_completed.txt", 'a+').read().splitlines()
+account_verify_completed = open("account_verify_completed.txt", 'r+').read().splitlines()
 
 def printWarning(input):
     print("====")
@@ -179,13 +180,20 @@ if in_pick == 9:
         printWarning("You need to create the tokens.txt-file!")
     elif not os.path.exists('combolist.txt'):
         printWarning("You need to create the combolist.txt-file!")
+    elif (mailServer == ""):
+        printWarning("mailServer is not set in the config!")
     else:
-        for combo in emailList:
-            for tknv in tokenV:
-                enp = combo.split(':')
-                p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py',enp[0],enp[1],proxy_list[proxy_number],tknv])
+        for tokens in tokenV:
+            enp = tokens.split(':')
+            currentEmail = enp[0]
+            print("Starting account verification for: " + currentEmail)
+            if currentEmail in account_verify_completed:
+                print("Account already verified: " + currentEmail)
+            else:
+                p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py', enp[0], enp[1], proxy_list[proxy_number], enp[2]])
                 incrementProxyNumber()
                 sleep(joinSpeed)
+                p.wait()
 
 if p:
     p.wait()
