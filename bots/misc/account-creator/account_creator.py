@@ -21,7 +21,8 @@ account_Password = sys.argv[2]
 PROXY = sys.argv[3]
 API_KEY = captchaAPI # Your 2captcha API KEY in the config file
 site_key = '6Lef5iQTAAAAAKeIvIY-DeexoO3gj7ryl9rLMEnn' 
-url = "https://discordapp.com/api/v6/auth/register"
+url = "https://discordapp.com/api/v8/auth/register"
+currentAcc = account_Email.split("@", 1)[0]
 
 def create():
     proxy = {
@@ -31,10 +32,12 @@ def create():
     s = requests.Session()
     captcha_id = s.post("http://2captcha.com/in.php?key={}&method=userrecaptcha&googlekey={}&pageurl={}".format(API_KEY, site_key, url)).text.split('|')[1]
     recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
-    print("Solving captcha...")
+    print(currentAcc, "Trying to solve captcha...")
     while 'CAPCHA_NOT_READY' in recaptcha_answer:
         sleep(5)
         recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
+        print(currentAcc, "2captcha: Not ready, please wait...")
+    print(currentAcc, "2captcha: ", recaptcha_answer.split('|')[0])
     recaptcha_answer = recaptcha_answer.split('|')[1]
 
     #This is the main login.
@@ -54,14 +57,20 @@ def create():
         "captcha_key": recaptcha_answer,
     }
 
-    r = requests.post(url,data=json.dumps(payload),headers=headers, proxies=proxy)
+    # Post register to discord
+    r = requests.post(url, data=json.dumps(payload), headers=headers, proxies=proxy)
+    
     sleep(0.5)
     if(r.status_code == 201 or 200 or 202):
         file = open('token_gen.txt','a')
+        fileCompleted = open('account_creator_completed.txt','a')
+        if 'message' in r.json():
+            print(currentAcc, ": Discord:", r.json()['message'], 'Retry in seconds: ', r.json()['retry_after'])
         if 'email' in r.json():
-            print(account_Email.split("@", 1)[0], ': ', r.json()['email'])
+            print(currentAcc, ': ', r.json()['email'])
         if 'token' in r.json():
             file.writelines(r.json()['token'] + '\n')
-            print('Made account : '+ account_Email.split("@", 1)[0])
+            fileCompleted.writelines(account_Email + '\n')
+            print(currentAcc, ": Account creation completed!")
     
 create()

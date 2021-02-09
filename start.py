@@ -18,6 +18,7 @@ from config import *
 proxy_number = 0
 spam_text = None
 p = None
+account_creator_completed = open("account_creator_completed.txt", 'r').read().splitlines()
 
 def printWarning(input):
     print("====")
@@ -163,9 +164,14 @@ if in_pick == 8:
     else:
         for combo in emailList:
             enp = combo.split(':')
-            p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_creator.py',enp[0],enp[1],proxy_list[proxy_number]])
-            incrementProxyNumber()
-            sleep(joinSpeed)
+            currentEmail = enp[0]
+            print("Starting account creation for: " + currentEmail)
+            if(currentEmail in account_creator_completed):
+                print("Account already created: " + currentEmail)
+            else:
+                p = subprocess.Popen([pythonCommand, 'bots/misc/account-creator/account_creator.py', enp[0], enp[1], proxy_list[proxy_number]])
+                incrementProxyNumber()
+                sleep(joinSpeed)
 if in_pick == 9:
     if(captchaAPI == ""):
         printWarning("This requires an API key from https://2captcha.com/")
