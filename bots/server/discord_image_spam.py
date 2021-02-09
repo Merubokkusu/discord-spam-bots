@@ -6,8 +6,6 @@
 # @last-modified 2020-11-15T11:52:43.172Z-05:00
 #
 
-
-
 import random
 import os
 import sys
@@ -47,11 +45,9 @@ else:
     else:
         bot = discum.Client(token=token)
 
-
-
 while True:
-        UpImage = random.choice(os.listdir(DirPictures)) 
-        print(DirPictures+UpImage)
-        bot.sendFile(DiscordChannel, DirPictures + UpImage)
-        time.sleep(SpamSpeed) # Changes how fast the images are posted. (Anything under 0.7 tends to break it (┛✧Д✧))┛彡┻━┻ )
+    UpImage = random.choice(os.listdir(DirPictures)) 
+    print(DirPictures+UpImage)
+    bot.sendFile(DiscordChannel, DirPictures + UpImage)
+    time.sleep(SpamSpeed) # Changes how fast the images are posted. (Anything under 0.7 tends to break it (┛✧Д✧))┛彡┻━┻ )
         

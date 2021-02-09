@@ -6,8 +6,6 @@
 # @last-modified 2020-11-15T11:52:52.471Z-05:00
 #
 
-
-
 import urllib.request
 import discum
 import random
@@ -56,4 +54,3 @@ while True:
     print(insult_text.text)
     bot.sendMessage(DiscordChannel, insult_text.text)
     time.sleep(SpamSpeed) # Changes how fast the messages are posted. (Anything under 0.7 tends to break it
-
