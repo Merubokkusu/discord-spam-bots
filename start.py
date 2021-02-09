@@ -43,7 +43,7 @@ else:
 def incrementProxyNumber():
     global proxy_number
     if(proxy_number < len(proxy_list)):
-        incrementProxyNumber()
+        proxy_number =+ 1
     else:
         proxy_number = 0
 
