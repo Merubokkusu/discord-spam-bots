@@ -36,6 +36,12 @@ else:
     proxy_list = []
     for token in userToken:
         proxy_list.append('localhost')
+def incrementProxyNumber():
+    global proxy_number
+    if(proxy_number < len(proxy_list)):
+        incrementProxyNumber()
+    else:
+        proxy_number = 0
 
 if os.path.exists('combolist.txt'):
     emailList = open("combolist.txt").read().splitlines()
@@ -72,30 +78,29 @@ else:
     in_pick = float(sys.argv[1])
     spam_text = sys.argv[2]
 
-
 if in_pick == 1:
     if os.path.exists('text.txt'):
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/server/discord_text_spam.py',token,'null',proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(1)
     else:
         if spam_text == None:
             spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/server/discord_text_spam.py',token,spam_text,proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(1)
 
 if in_pick == 2:
     for token in userToken:
         p = subprocess.Popen([pythonCommand, 'bots/server/discord_image_spam.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 if in_pick == 3:
     for token in userToken:
         p = subprocess.Popen([pythonCommand,'bots/server/discord_insult_spam.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 #DM Spammers
 if in_pick == 4:
@@ -106,7 +111,7 @@ if in_pick == 4:
             file.close()
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/DM/discord_text_spam_dm.py',token,'null',proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(2.5)
     else:
         if not os.path.exists('dm_spam_text.txt'):
@@ -117,7 +122,7 @@ if in_pick == 4:
             spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/DM/discord_text_spam_dm.py',token,spam_text,proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(2.5)
 
 if in_pick == 5:
@@ -127,7 +132,7 @@ if in_pick == 5:
         file.close()
     for token in userToken:
         p = subprocess.Popen([pythonCommand, 'bots/DM/discord_image_spam_dm.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 if in_pick == 6:
     if not os.path.exists('dm_spam_insult.txt'):
@@ -136,18 +141,18 @@ if in_pick == 6:
         file.close()
     for token in userToken:
         p = subprocess.Popen([pythonCommand,'bots/DM/discord_insult_spam_dm.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 if in_pick == 7:
     for token in userToken:
         if userToken == False:
             enp = token.split(':')
             p = subprocess.Popen([pythonCommand,'bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(joinSpeed)
         else:
             p = subprocess.Popen([pythonCommand,'bots/misc/joinServer2.0.py',token,inviteLink,proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(joinSpeed)
 
 if in_pick == 8:
@@ -159,7 +164,7 @@ if in_pick == 8:
         for combo in emailList:
             enp = combo.split(':')
             p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_creator.py',enp[0],enp[1],proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(joinSpeed)
 if in_pick == 9:
     if(captchaAPI == ""):
@@ -173,7 +178,7 @@ if in_pick == 9:
             for tknv in tokenV:
                 enp = combo.split(':')
                 p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py',enp[0],enp[1],proxy_list[proxy_number],tknv])
-                proxy_number += 1
+                incrementProxyNumber()
                 sleep(joinSpeed)
 
 if p:
