@@ -30,15 +30,18 @@ if os.path.exists('tokens.txt'):
 else:
     printWarning("EDIT YOUR CONFIG.PY BEFORE USING!")
 
+if os.path.exists('combolist.txt'):
+    emailList = open("combolist.txt").read().splitlines()
+else:
+    emailList = None
+
 if os.path.exists('proxies.txt'):
     proxy_list = open("proxies.txt").read().splitlines()
 else:
-    proxy_list = []
-    if userToken is None:
-        printWarning("userToken is missing!")
-    else:
-        for token in userToken:
-            proxy_list.append('localhost')
+    file = open('proxies.txt','a')
+    for i in emailList:
+        file.writelines("localhost" + '\n')
+    proxy_list = open("proxies.txt").read().splitlines()
 
 def incrementProxyNumber():
     global proxy_number
@@ -47,10 +50,6 @@ def incrementProxyNumber():
     else:
         proxy_number = 0
 
-if os.path.exists('combolist.txt'):
-    emailList = open("combolist.txt").read().splitlines()
-else:
-    emailList = None
 if os.path.exists('token_gen.txt'):
     tokenV = open("token_gen.txt").read().splitlines()
 else:
