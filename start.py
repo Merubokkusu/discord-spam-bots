@@ -142,7 +142,7 @@ if in_pick == 7:
 
 if in_pick == 8:
     if(captchaAPI == ""):
-        print("This requires an API key from https://2captch9a.com/")
+        print("This requires an API key from https://2captcha.com/")
     else:
         for combo in emailList:
             enp = combo.split(':')
