@@ -147,15 +147,10 @@ if in_pick == 6:
 
 if in_pick == 7:
     for token in userToken:
-        if userToken == False:
-            enp = token.split(':')
-            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]])
-            incrementProxyNumber()
-            sleep(joinSpeed)
-        else:
-            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer2.0.py',token,inviteLink,proxy_list[proxy_number]])
-            incrementProxyNumber()
-            sleep(joinSpeed)
+        enp = token.split(':')
+        p = subprocess.Popen([pythonCommand,'bots/misc/joinServer2.0.py', enp[2], inviteLink, proxy_list[proxy_number]])
+        incrementProxyNumber()
+        sleep(joinSpeed)
 
 if in_pick == 8:
     if(captchaAPI == ""):
