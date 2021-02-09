@@ -57,10 +57,11 @@ class MyHTMLParser(HTMLParser): # From https://stackoverflow.com/a/3075561/60585
                             print(currentAcc, "VERIFY LINK: ", verifyLink)
 
 def sendEmail():
-    url = 'https://discordapp.com/api/v8/auth/verify/resend'
-    headers = {"content-type": "application/json", "Authorization": TOKEN }
+    url = 'https://discord.com/api/v6/auth/verify/resend'
+    headers = {"content-type": "application/json", "authorization": TOKEN }
 
-    r = requests.post(url,headers=headers,proxies=proxy)
+    r = requests.post(url, headers=headers, proxies=proxy)
+
     if(r.status_code == 200 or 204):
         print(currentAcc, "Token: '" + TOKEN[-25] + "' had the email resent.")
         sleep(5) # should sleep some here 
