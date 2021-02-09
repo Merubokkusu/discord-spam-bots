@@ -18,7 +18,7 @@ from email import parser
 from html.parser import HTMLParser
 from time import sleep
 sys.path.append("././.")
-from config import captchaAPI
+from config import captchaAPI, mailServer
 
 account_Email = sys.argv[1]
 account_Password = sys.argv[2]
