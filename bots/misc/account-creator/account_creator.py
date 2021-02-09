@@ -21,7 +21,7 @@ account_Password = sys.argv[2]
 PROXY = sys.argv[3]
 API_KEY = captchaAPI # Your 2captcha API KEY in the config file
 site_key = '6Lef5iQTAAAAAKeIvIY-DeexoO3gj7ryl9rLMEnn' 
-url = "https://discordapp.com/api/v8/auth/register"
+url = "https://discordapp.com/api/v6/auth/register"
 currentAcc = account_Email.split("@", 1)[0]
 
 def create():
