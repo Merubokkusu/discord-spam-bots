@@ -147,3 +147,5 @@ proxies.txt
 text.txt
 token_gen.txt
 tokens.txt
+account_creator_completed.txt
+account_verify_completed.txt

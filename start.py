@@ -17,75 +17,92 @@ from config import *
 
 proxy_number = 0
 spam_text = None
+p = None
+account_creator_completed = open("account_creator_completed.txt", 'r+').read().splitlines()
+account_verify_completed = open("account_verify_completed.txt", 'r+').read().splitlines()
+
+def printWarning(input):
+    print("====")
+    print("WARNING! " + input)
+    print("====")
 
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
-    w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n"
+    printWarning("EDIT YOUR CONFIG.PY BEFORE USING!\n-=Using tokens.txt=-\n")
 else:
-    w1 = "EDIT YOUR CONFIG.PY BEFORE USING!\n"
+    printWarning("EDIT YOUR CONFIG.PY BEFORE USING!")
+
+if os.path.exists('combolist.txt'):
+    emailList = open("combolist.txt").read().splitlines()
+else:
+    emailList = None
 
 if os.path.exists('proxies.txt'):
     proxy_list = open("proxies.txt").read().splitlines()
 else:
-    proxy_list = []
-    for token in userToken:
-        proxy_list.append('localhost')
+    file = open('proxies.txt','a')
+    for i in emailList:
+        file.writelines("localhost" + '\n')
+    proxy_list = open("proxies.txt").read().splitlines()
 
-if os.path.exists('combolist.txt'):
-    emailList = open("combolist.txt").read().splitlines()
-if os.path.exists('token_gen.txt'):
-    tokenV = open("token_gen.txt").read().splitlines()
+def incrementProxyNumber():
+    global proxy_number
+    if(proxy_number < len(proxy_list)):
+        proxy_number =+ 1
+    else:
+        proxy_number = 0
+
+if os.path.exists('tokens.txt'):
+    tokenV = open("tokens.txt").read().splitlines()
+else:
+    tokenV = None
 
 if len(sys.argv) < 2:
-    for char in w1:
-        sleep(0.01)
-        sys.stdout.write(char)
-        sys.stdout.flush()
-    sleep(0.5)
+    print("   +=================+")
     print("Type one of the following numbers to launch that spammmer")
-    print("       +========-Server Spammers-=========+")
+    print("   +========- Server Spammers -=========+")
     print("1 : Text Spammer - Write your own text to spam")
     print("2 : Image Spammer - Spam random images in a selected folder")
     print("3 : Insult Spammer - Picks insults online and spams them")
-    print("         +========-DM Spammers-=========+      ")
+    print("   +========- DM Spammers -=========+")
     print("4 : Text Spammer - Write your own text to spam")
     print("5 : Image Spammer - Spam random images in a selected folder")
     print("6 : Insult Spammer - Picks insults online and spams them")
-    print("           +========-Other-=========+")
+    print("   +========- Other -=========+")
     print("7 : Join Server - Join the server thats written in the config")
-    print("           +========-Account Creator-=========+")
+    print("   +========- Account Creator -=========+")
     print("8 : Account creator - Create bulk accounts")
     print("9 : Account verifier - Verify accounts")
+    print("   +=================+")
 
     in_pick = float(input("Select a bot: "))
 else:
     in_pick = float(sys.argv[1])
     spam_text = sys.argv[2]
 
-
 if in_pick == 1:
     if os.path.exists('text.txt'):
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/server/discord_text_spam.py',token,'null',proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(1)
     else:
         if spam_text == None:
             spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/server/discord_text_spam.py',token,spam_text,proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(1)
 
 if in_pick == 2:
     for token in userToken:
         p = subprocess.Popen([pythonCommand, 'bots/server/discord_image_spam.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 if in_pick == 3:
     for token in userToken:
         p = subprocess.Popen([pythonCommand,'bots/server/discord_insult_spam.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 #DM Spammers
 if in_pick == 4:
@@ -96,7 +113,7 @@ if in_pick == 4:
             file.close()
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/DM/discord_text_spam_dm.py',token,'null',proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(2.5)
     else:
         if not os.path.exists('dm_spam_text.txt'):
@@ -107,7 +124,7 @@ if in_pick == 4:
             spam_text = input("Write spam text : ")
         for token in userToken:
             p = subprocess.Popen([pythonCommand,'bots/DM/discord_text_spam_dm.py',token,spam_text,proxy_list[proxy_number]])
-            proxy_number += 1
+            incrementProxyNumber()
             sleep(2.5)
 
 if in_pick == 5:
@@ -117,7 +134,7 @@ if in_pick == 5:
         file.close()
     for token in userToken:
         p = subprocess.Popen([pythonCommand, 'bots/DM/discord_image_spam_dm.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 if in_pick == 6:
     if not os.path.exists('dm_spam_insult.txt'):
@@ -126,42 +143,52 @@ if in_pick == 6:
         file.close()
     for token in userToken:
         p = subprocess.Popen([pythonCommand,'bots/DM/discord_insult_spam_dm.py', token,proxy_list[proxy_number]])
-        proxy_number += 1
+        incrementProxyNumber()
 
 if in_pick == 7:
     for token in userToken:
-        if userToken == False:
-            enp = token.split(':')
-            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer.py',enp[0],enp[1],inviteLink,useBrowser,proxy_list[proxy_number]])
-            proxy_number += 1
-            sleep(joinSpeed)
-        else:
-            p = subprocess.Popen([pythonCommand,'bots/misc/joinServer2.0.py',token,inviteLink,proxy_list[proxy_number]])
-            proxy_number += 1
-            sleep(joinSpeed)
+        enp = token.split(':')
+        p = subprocess.Popen([pythonCommand,'bots/misc/joinServer2.0.py', enp[2], inviteLink, proxy_list[proxy_number]])
+        incrementProxyNumber()
+        sleep(joinSpeed)
 
 if in_pick == 8:
     if(captchaAPI == ""):
-        print("This requires an API key from https://2captch9a.com/")
+        printWarning("This requires an API key from https://2captcha.com/")
+    elif(emailList is None):
+        printWarning("You need to create the combolist.txt-file!")
     else:
         for combo in emailList:
             enp = combo.split(':')
-            p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_creator.py',enp[0],enp[1],proxy_list[proxy_number]])
-            proxy_number += 1
-            sleep(joinSpeed)
+            currentEmail = enp[0]
+            print("Starting account creation for: " + currentEmail)
+            if(currentEmail in account_creator_completed):
+                print("Account already created: " + currentEmail)
+            else:
+                p = subprocess.Popen([pythonCommand, 'bots/misc/account-creator/account_creator.py', enp[0], enp[1], proxy_list[proxy_number]])
+                incrementProxyNumber()
+                sleep(joinSpeed)
 if in_pick == 9:
     if(captchaAPI == ""):
-        print("This requires an API key from https://2captcha.com/")
+        printWarning("This requires an API key from https://2captcha.com/")
     elif not os.path.exists('tokens.txt'):
-        print("tokens.txt is-file missing!")
+        printWarning("You need to create the tokens.txt-file!")
     elif not os.path.exists('combolist.txt'):
-        print("combolist.txt-file is missing!")
+        printWarning("You need to create the combolist.txt-file!")
+    elif (mailServer == ""):
+        printWarning("mailServer is not set in the config!")
     else:
-        for combo in emailList:
-            for tknv in tokenV:
-                enp = combo.split(':')
-                p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py',enp[0],enp[1],proxy_list[proxy_number],tknv])
-                proxy_number += 1
+        for tokens in tokenV:
+            enp = tokens.split(':')
+            currentEmail = enp[0]
+            print("Starting account verification for: " + currentEmail)
+            if currentEmail in account_verify_completed:
+                print("Account already verified: " + currentEmail)
+            else:
+                p = subprocess.Popen([pythonCommand,'bots/misc/account-creator/account_verify.py', enp[0], enp[1], proxy_list[proxy_number], enp[2]])
+                incrementProxyNumber()
                 sleep(joinSpeed)
+                p.wait()
 
-p.wait()
+if p:
+    p.wait()
