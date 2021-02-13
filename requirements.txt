@@ -1,4 +1,4 @@
 bs4==0.0.1
-discum==1.0.1
+discum==1.0.0
 selenium==3.8.1
 requests==2.21.0
