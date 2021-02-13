@@ -91,8 +91,8 @@ while True:
                 print(member + ' was already messaged')
             else:
                 try:
-                    dmChannel = bot.createDM([member])
-                    bot.sendMessage(dmChannel,spam_text+" "+random.choice(emojiList)+random.choice(emojiList))
+                    dmChannel = json.loads(bot.createDM([member]).content)
+                    bot.sendMessage(str(dmChannel['id']),spam_text+" "+random.choice(emojiList)+random.choice(emojiList))
                     print('Sent message to '+ member)
                     file = open('dm_spam_text.txt','a')
                     file.writelines(member + '\n')
@@ -121,8 +121,8 @@ while True:
             print(member + ' was already messaged')
         else:
             try:
-                dmChannel = bot.createDM([member])
-                bot.sendMessage(dmChannel,spam_text+" "+random.choice(emojiList)+random.choice(emojiList))
+                dmChannel = json.loads(bot.createDM([member]).content)
+                bot.sendMessage(str(dmChannel['id']),spam_text+" "+random.choice(emojiList)+random.choice(emojiList))
                 print('Sent message to '+ member)
                 file = open('dm_spam_text.txt','a')
                 file.writelines(member + '\n')
