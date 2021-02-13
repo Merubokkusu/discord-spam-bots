@@ -24,14 +24,8 @@ def printWarning(input):
     print("WARNING! " + input)
     print("====")
 
-if os.path.exists('account_creator_completed.txt'):
-    account_creator_completed = open("account_creator_completed.txt", 'r+').read().splitlines()
-else:
-    account_creator_completed = None
-if os.path.exists('account_verify_completed.txt'):
-    account_verify_completed = open("account_verify_completed.txt", 'r+').read().splitlines()
-else:
-    account_verify_completed = None
+account_creator_completed = open("account_creator_completed.txt", 'a+').read().splitlines()
+account_verify_completed = open("account_verify_completed.txt", 'a+').read().splitlines()
     
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
