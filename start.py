@@ -26,6 +26,7 @@ def printWarning(input):
 
 account_creator_completed = open("account_creator_completed.txt", 'a+').read().splitlines()
 account_verify_completed = open("account_verify_completed.txt", 'a+').read().splitlines()
+emailList = open("combolist.txt", 'a+').read().splitlines()
     
 if os.path.exists('tokens.txt'):
     userToken = open("tokens.txt").read().splitlines()
