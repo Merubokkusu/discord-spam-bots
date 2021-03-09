@@ -23,6 +23,8 @@ token = sys.argv[1]
 global spam_text
 spam_text = sys.argv[2]
 global bot # Declaring discum global
+if(os.path.exists("proxies.txt")):
+    pnp = sys.argv[3].split(':')
 if ':' in token: # Email and pass check (Seeing if there is a basic combo list)
     enp = token.split(':')
     email = enp[0] 
@@ -35,9 +37,9 @@ if ':' in token: # Email and pass check (Seeing if there is a basic combo list)
             p = subprocess.Popen(['python','bots\misc\joinServer.py',email,password,inviteLink,useBrowser],shell=False)
             p.wait() 
     if(os.path.exists("proxies.txt")): # Checking root folder for proxies
-        bot = discum.Client(email=email,password=password, token="none", proxy_host=sys.argv[3])
+        bot = discum.Client(email=email,password=password, token="none", proxy_host=pnp[0], proxy_port=pnp[1], log=discumLog)
     else:
-        bot = discum.Client(email=email,password=password, token="none")
+        bot = discum.Client(email=email,password=password, token="none", log=discumLog)
 else:
     if autojoinServer == True:   
         if sys.platform == "win32":
@@ -47,9 +49,10 @@ else:
             p = subprocess.Popen([pythonCommand,'bots\misc\joinServer2.0.py',token,inviteLink,sys.argv[3]],shell=False)
             p.wait()
     if(os.path.exists("proxies.txt")):
-        bot = discum.Client(token=token, proxy_host=sys.argv[3], log=False)
+
+        bot = discum.Client(token=token, proxy_host=pnp[0], proxy_port=pnp[1], log=discumLog)
     else:
-        bot = discum.Client(token=token,log=False)
+        bot = discum.Client(token=token,log=discumLog)
 
 @bot.gateway.command
 def memberTest(resp):
