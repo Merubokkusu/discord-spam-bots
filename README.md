@@ -29,10 +29,11 @@ Working DM spammers
 
 # Requirements 
 - Python 3.6+ (I use [3.7.8](https://www.python.org/downloads/release/python-378/))
-- discum (pip install discum)
-- Beautiful Soup 4 (pip install bs4
-- Selenium (pip install selenium)
-- Requests (pip install requests)
+- discum
+- Beautiful Soup 4
+- Selenium
+- Requests
+- 2captcha API
 
 # Setup
 - [Setting up the bot | aka the Wiki](https://github.com/Merubokkusu/discord-spam-bots/wiki)
