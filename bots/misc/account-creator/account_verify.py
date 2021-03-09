@@ -5,7 +5,7 @@
 # @license CC BY-NC-ND 3.0 US | https://creativecommons.org/licenses/by-nc-nd/3.0/us/
 # @website https://github.com/Merubokkusu/discord-spam-bots/
 # @email liam@merubokkusu.com
-# @last-modified 2020-01-23T02:08:15.630Z-05:00
+# @last-modified 2021-03-09T17:43:27.010Z-05:00
 #
 
 import requests
@@ -17,6 +17,7 @@ import time
 from email import parser
 from html.parser import HTMLParser
 from time import sleep
+from twocaptcha import TwoCaptcha
 sys.path.append("././.")
 from config import captchaAPI, mailServer
 
@@ -25,8 +26,9 @@ account_Password = sys.argv[2]
 PROXY = sys.argv[3]
 TOKEN = sys.argv[4]
 foundLink = False
-API_KEY = captchaAPI
-site_key = '6Lef5iQTAAAAAKeIvIY-DeexoO3gj7ryl9rLMEnn'
+#API_KEY = captchaAPI
+solver = TwoCaptcha(captchaAPI)
+site_key = 'f5561ba9-8f1e-40ca-9b5b-a0b3f719ef34' 
 currentAcc = account_Email.split("@", 1)[0]
 checkedTimes = 0
 
@@ -108,18 +110,19 @@ def checkEmail():
         verifyAccount()
 
 def verifyAccount():
-    url = 'https://discordapp.com/'
+    discordUrl = 'https://discordapp.com/'
     print(currentAcc, "Starting verification")
-    s = requests.Session()
-    captcha_id = s.post("http://2captcha.com/in.php?key={}&method=userrecaptcha&googlekey={}&pageurl={}".format(API_KEY, site_key, url)).text.split('|')[1]
-    recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
-    print(currentAcc, "Trying to solve captcha...")
-    while 'CAPCHA_NOT_READY' in recaptcha_answer:
-        sleep(5)
-        recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
-        print(currentAcc, "2captcha: Not ready, please wait...")
-    print(currentAcc, "2captcha: ", recaptcha_answer.split('|')[0])
-    recaptcha_answer = recaptcha_answer.split('|')[1]
+    # s = requests.Session()
+    # captcha_id = s.post("http://2captcha.com/in.php?key={}&method=userrecaptcha&googlekey={}&pageurl={}".format(API_KEY, site_key, url)).text.split('|')[1]
+    # recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
+    # print(currentAcc, "Trying to solve captcha...")
+    # while 'CAPCHA_NOT_READY' in recaptcha_answer:
+    #     sleep(5)
+    #     recaptcha_answer = s.get("http://2captcha.com/res.php?key={}&action=get&id={}".format(API_KEY, captcha_id)).text
+    #     print(currentAcc, "2captcha: Not ready, please wait...")
+    # print(currentAcc, "2captcha: ", recaptcha_answer.split('|')[0])
+    # recaptcha_answer = recaptcha_answer.split('|')[1]
+    recaptcha_answer = solver.hcaptcha(sitekey=site_key,url=discordUrl)
     headers = {
         "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:59.0) Gecko/20100101 Firefox/59.0',
         "content-type": "application/json",
