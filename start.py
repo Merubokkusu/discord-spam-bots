@@ -43,7 +43,6 @@ if os.path.exists('proxies.txt'):
     proxy_list = open("proxies.txt").read().splitlines()
 else:
     proxy_list = ['localhost'] * 9000
-    print(proxy_list)
 
 def incrementProxyNumber():
     global proxy_number
