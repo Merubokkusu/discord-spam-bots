@@ -1,5 +1,5 @@
 bs4==0.0.1
 selenium==3.8.1
-requests==2.21.0
+requests==2.31.0
 discum==1.1.0
 2captcha-python==1.0.3
